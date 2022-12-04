@@ -1,6 +1,8 @@
 name: Discussion Notification
 
-on: [discussion_comment]
+on: 
+  discussion_comment:
+    types: ["created"]
 
 jobs:
   notification:

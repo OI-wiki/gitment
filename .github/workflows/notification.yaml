@@ -22,3 +22,4 @@ jobs:
           token: ${{ secrets.DISCUSSION_TELEGRAM_TOKEN }}
           message: ${{ steps.markdown-message.outputs.message }}
           format: markdown
+          disable_web_page_preview: true

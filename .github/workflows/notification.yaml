@@ -15,7 +15,9 @@ jobs:
           format: markdown
 
       - name: "Output the Markdown message"
-        run: echo '${{ steps.markdown-message.outputs.message }}'
+        env:
+          MESSAGE: ${{ steps.plaintext-message.outputs.message }}
+        run: echo "$MESSAGE"
 
       - name: "Send Telegram Notification on Comment"
         uses: appleboy/telegram-action@master

@@ -16,7 +16,7 @@ jobs:
 
       - name: "Output the Markdown message"
         env:
-          MESSAGE: ${{ steps.plaintext-message.outputs.message }}
+          MESSAGE: ${{ steps.markdown-message.outputs.message }}
         run: echo "$MESSAGE"
 
       - name: "Send Telegram Notification on Comment"

@@ -1,0 +1,29 @@
+name: Discussion Notification
+
+on: 
+  discussion_comment:
+    types: ["created"]
+
+jobs:
+  notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Get the Markdown message"
+        uses: ouuan/notification-action@master
+        id: markdown-message
+        with:
+          format: markdown
+
+      - name: "Output the Markdown message"
+        env:
+          MESSAGE: ${{ steps.markdown-message.outputs.message }}
+        run: echo "$MESSAGE"
+
+      - name: "Send Telegram Notification on Comment"
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.DISCUSSION_TELEGRAM_TO }}
+          token: ${{ secrets.DISCUSSION_TELEGRAM_TOKEN }}
+          message: ${{ steps.markdown-message.outputs.message }}
+          format: markdown
+          disable_web_page_preview: true
